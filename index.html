@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHI SCAN — Архитектурные стили</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <a class="logo" href="#">ARCHI<span>SCAN</span></a>
+    <nav>
+        <a href="#scanner">Распознавание</a>
+        <a href="#guide">Как фотографировать</a>
+        <a href="#styles">Архитектура</a>
+    </nav>
+    <span class="header-label">ARCHITECTURE / AI</span>
+</header>
+
+<main>
+    <section class="hero">
+        <p class="eyebrow">ИССЛЕДУЙ ГОРОД ПО-НОВОМУ</p>
+        <h1>Узнай историю<br>здания по <span>фотографии.</span></h1>
+        <p class="hero-description">
+            Загрузи изображение или сделай снимок.
+            ARCHI SCAN поможет определить архитектурный стиль
+            и расскажет об особенностях здания.
+        </p>
+    </section>
+
+    <section class="scanner-section" id="scanner">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">01 / AI SCANNER</p>
+                <h2>Определи стиль</h2>
+            </div>
+            <span class="status"><span></span> IMAGE ANALYSIS</span>
+        </div>
+
+        <div class="scanner-grid">
+            <div class="camera-card">
+                <div class="card-top">
+                    <h3>Изображение здания</h3>
+                    <span class="step-number">01</span>
+                </div>
+
+                <div class="camera-frame" id="cameraFrame">
+                    <video id="video" autoplay playsinline muted hidden></video>
+                    <img id="preview" alt="Предпросмотр здания" hidden>
+                    <div class="camera-placeholder" id="placeholder">
+                        <div class="camera-icon">⌗</div>
+                        <p>Здесь появится фотография</p>
+                        <span>Используй камеру или загрузи файл</span>
+                    </div>
+                    <span class="frame-label">LIVE / IMAGE</span>
+                </div>
+
+                <div class="camera-controls">
+                    <button class="button button-dark" id="startCamera">
+                        Включить камеру
+                    </button>
+                    <button class="button button-light" id="capture">
+                        Сделать фото
+                    </button>
+                </div>
+
+                <label class="upload-button" for="fileInput">
+                    ↑ &nbsp; Загрузить фотографию
+                </label>
+                <input type="file" id="fileInput" accept="image/*" hidden>
+
+                <p class="small-note">
+                    Поддерживаются фотографии в форматах JPG, PNG и WEBP.
+                </p>
+            </div>
+
+            <div class="result-card">
+                <div class="card-top">
+                    <h3>Результат анализа</h3>
+                    <span class="step-number">02</span>
+                </div>
+
+                <div class="result-placeholder" id="resultPlaceholder">
+                    <div class="result-icon">✳</div>
+                    <h3>Какой это стиль?</h3>
+                    <p>
+                        Выбери изображение, затем нажми кнопку
+                        определения архитектурного стиля.
+                    </p>
+                </div>
+
+                <div id="result" hidden>
+                    <p class="eyebrow">ПРЕДПОЛАГАЕМЫЙ СТИЛЬ</p>
+                    <h2 id="styleName">—</h2>
+                    <div class="confidence-row">
+                        <span>Уверенность модели</span>
+                        <strong id="confidence">0%</strong>
+                    </div>
+                    <div class="confidence-track">
+                        <div id="confidenceBar"></div>
+                    </div>
+                    <p id="styleDescription" class="result-description"></p>
+                    <div class="result-tip" id="resultTip"></div>
+                    <p class="small-note">
+                        Это прогноз модели, а не экспертное заключение.
+                    </p>
+                </div>
+
+                <div class="result-actions">
+                    <button class="button button-accent" id="identify">
+                        Определить стиль ↗
+                    </button>
+                    <button class="button button-light" id="reset">
+                        Сбросить
+                    </button>
+                </div>
+
+                <p class="small-note" id="modelStatus">
+                    Модель ещё не загружена.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="guide-section" id="guide">
+        <p class="eyebrow">02 / PHOTO GUIDE</p>
+        <h2>Как сделать правильное фото?</h2>
+        <p class="section-description">
+            Качество фотографии влияет на точность распознавания.
+            Чтобы модель могла увидеть особенности фасада, соблюдай правила.
+        </p>
+
+        <div class="guide-grid">
+            <article class="guide-card">
+                <span class="guide-number">01</span>
+                <h3>Снимай фронтально</h3>
+                <p>Старайся стоять прямо перед фасадом, а не сбоку.
+                Здание должно быть видно спереди.</p>
+            </article>
+
+            <article class="guide-card">
+                <span class="guide-number">02</span>
+                <h3>Выбирай качество</h3>
+                <p>Используй чёткое изображение высокого разрешения
+                без размытия и сильного цифрового увеличения.</p>
+            </article>
+
+            <article class="guide-card">
+                <span class="guide-number">03</span>
+                <h3>Покажи весь фасад</h3>
+                <p>По возможности включи в кадр здание целиком,
+                окна, балконы, крышу и вход.</p>
+            </article>
+
+            <article class="guide-card">
+                <span class="guide-number">04</span>
+                <h3>Следи за светом</h3>
+                <p>Снимай днём, избегай сильных теней,
+                бликов, тумана и ночных фотографий.</p>
+            </article>
+        </div>
+
+        <div class="guide-warning">
+            <span>✳</span>
+            <p><strong>Важно:</strong> на фотографии должно быть само здание,
+            а не только небо, дерево или отдельное окно. Не наклоняй камеру
+            слишком сильно и старайся не обрезать верхнюю часть фасада.</p>
+        </div>
+    </section>
+
+    <section class="styles-section" id="styles">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">03 / ARCHITECTURE LIBRARY</p>
+                <h2>Архитектура вокруг нас</h2>
+            </div>
+        </div>
+
+        <p class="section-description">
+            Изучи характерные признаки зданий. Три главных направления
+            нашего проекта — современная архитектура, советский модернизм
+            и хрущёвки.
+        </p>
+
+        <div class="featured-styles">
+            <article class="style-card featured">
+                <div class="style-visual modern-visual">
+                    <span>01 / NOW</span>
+                    <div class="modern-building">
+                        <div></div><div></div><div></div><div></div>
+                        <div></div><div></div><div></div><div></div>
+                        <div></div><div></div><div></div><div></div>
+                    </div>
+                </div>
+                <div class="style-content">
+                    <p class="eyebrow">XX–XXI ВЕК</p>
+                    <h3>Современная архитектура</h3>
+                    <p class="style-intro">
+                        Функциональность, новые технологии и разнообразие форм.
+                    </p>
+                    <div class="fact-row">
+                        <span>Период</span>
+                        <p>Примерно с начала XX века; многие современные
+                        направления развиваются с середины XX века до наших дней.</p>
+                    </div>
+                    <div class="fact-row">
+                        <span>Материалы</span>
+                        <p>Стекло, сталь, железобетон, алюминий,
+                        композиты и энергоэффективные панели.</p>
+                    </div>
+                    <div class="fact-row">
+                        <span>Где встречается</span>
+                        <p>По всему миру: Казахстан, Япония, ОАЭ,
+                        США, страны Европы и другие.</p>
+                    </div>
+                    <div class="fact-row">
+                        <span>Ценность</span>
+                        <p>Инновации, энергоэффективность, новые способы
+                        использования пространства и технологий.</p>
+                    </div>
+                    <div class="example">
+                        <strong>Примеры</strong>
+                        <p>Бурдж-Халифа в Дубае, The Shard в Лондоне,
+                        современные деловые центры Астаны и Алматы.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="style-card featured">
+                <div class="style-visual soviet-visual">
+                    <span>02 / 1950–1980s</span>
+                    <div class="soviet-building">
+                        <div class="soviet-windows"></div>
+                        <div class="soviet-windows"></div>
+                        <div class="soviet-windows"></div>
+                    </div>
+                </div>
+                <div class="style-content">
+                    <p class="eyebrow">СЕРЕДИНА XX ВЕКА</p>
+                    <h3>Советский модернизм</h3>
+                    <p class="style-intro">
+                        Геометрические объёмы, выразительные конструкции
+                        и масштабные общественные здания.
+                    </p>
+                    <div class="fact-row">
+                        <span>Период</span>
+                        <p>Преимущественно 1950-е — 1980-е годы,
+                        с региональными различиями.</p>
+                    </div>
+                    <div class="fact-row">
+                        <span>Материалы</span>
+                        <p>Железобетон, бетонные панели, стекло,
+                        металл, каменная и керамическая облицовка.</p>
+                    </div>
+                    <div class="fact-row">
+                        <span>Где встречается</span>
+                        <p>СССР и другие социалистические страны;
+                        примеры сохранились в Казахстане, России,
+                        Грузии, Армении и других странах.</p>
+                    </div>
+                    <div class="fact-row">
+                        <span>Ценность</span>
+                        <p>Инженерные решения, монументальность,
+                        культурная память и архитектурное наследие.</p>
+                    </div>
+                    <div class="example">
+                        <strong>Примеры</strong>
+                        <p>Дворец Республики в Алматы, здания
+                        цирков, дворцов культуры и научных учреждений
+                        советского периода.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="style-card featured">
+                <div class="style-visual khrush-visual">
+                    <span>03 / 1950–1970s</span>
+                    <div class="khrush-building">
+                        <div class="khrush-windows"></div>
+                        <div class="khrush-windows"></div>
+                        <div class="khrush-windows"></div>
+                        <div class="khrush-windows"></div>
+                    </div>
+                </div>
+                <div class="style-content">
+                    <p class="eyebrow">МАССОВОЕ ЖИЛЬЁ</p>
+                    <h3>Хрущёвки</h3>
+                    <p class="style-intro">
+                        Типовые многоквартирные дома, созданные для
+                        быстрого решения жилищного вопроса.
+                    </p>
+                    <div class="fact-row">
+                        <span>Период</span>
+                        <p>Массовое строительство началось в конце
+                        1950-х годов и продолжалось в последующие десятилетия.</p>
+                    </div>
+                    <div class="fact-row">
+                        <span>Материалы</span>
+                        <p>Кирпич, сборные бетонные и железобетонные
+                        панели; конкретный материал зависит от серии.</p>
+                    </div>
+                    <div class="fact-row">
+                        <span>Где встречается</span>
+                        <p>СССР и некоторые другие страны Восточной Европы;
+                        сохранились в Казахстане, России, Украине и других странах.</p>
+                    </div>
+                    <div class="fact-row">
+                        <span>Ценность</span>
+                        <p>Доступное массовое жильё, история городской
+                        застройки и важный этап развития типового строительства.</p>
+                    </div>
+                    <div class="example">
+                        <strong>Примеры</strong>
+                        <p>Пятиэтажные жилые дома в Алматы и других
+                        городах бывшего СССР с простыми фасадами
+                        и небольшими балконами.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <h3 class="other-heading">Другие архитектурные стили</h3>
+        <div class="other-styles">
+            <article class="other-card">
+                <span>04</span>
+                <h3>Классицизм</h3>
+                <p>Симметрия, колонны, фронтоны и пропорциональность.</p>
+                <p class="example"><strong>Пример:</strong> Пантеон в Париже.</p>
+            </article>
+            <article class="other-card">
+                <span>05</span>
+                <h3>Готика</h3>
+                <p>Стрельчатые арки, высокие своды и витражи.</p>
+                <p class="example"><strong>Пример:</strong> собор Парижской Богоматери.</p>
+            </article>
+            <article class="other-card">
+                <span>06</span>
+                <h3>Барокко</h3>
+                <p>Декоративность, сложные формы и богатый орнамент.</p>
+                <p class="example"><strong>Пример:</strong> дворец Шёнбрунн в Вене.</p>
+            </article>
+            <article class="other-card">
+                <span>07</span>
+                <h3>Конструктивизм</h3>
+                <p>Геометрия, функциональность и открытые конструкции.</p>
+                <p class="example"><strong>Пример:</strong> Дом Наркомфина в Москве.</p>
+            </article>
+            <article class="other-card">
+                <span>08</span>
+                <h3>Брутализм</h3>
+                <p>Массивные объёмы, грубая фактура бетона.</p>
+                <p class="example"><strong>Пример:</strong> Barbican в Лондоне.</p>
+            </article>
+            <article class="other-card">
+                <span>09</span>
+                <h3>Ар-деко</h3>
+                <p>Геометрический декор, ступенчатые силуэты и орнаменты.</p>
+                <p class="example"><strong>Пример:</strong> Крайслер-билдинг в Нью-Йорке.</p>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <a class="logo" href="#">ARCHI<span>SCAN</span></a>
+    <p>Изучай здания. Понимай города. Сохраняй историю.</p>
+    <span>EDUCATIONAL PROJECT · 2026</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+<script src="scrip.js"></script>
+</body>
+</html>
